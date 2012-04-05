@@ -9,7 +9,7 @@ class EmailAuthenticationBackend(ModelBackend):
     
     def authenticate(self, **credentials):
         try:
-            email_address = EmailAddress.objects.get(email__iexact=credentials["email"])
+            email_address = EmailAddress.objects.get(email__iexact=credentials.get("email",""))
         except EmailAddress.DoesNotExist:
             return None
         else:
